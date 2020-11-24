@@ -1,3 +1,5 @@
+import re
+
 f = open("output.csv", "r")
 
 lines_to_write = []
@@ -7,8 +9,18 @@ unique_nodes = {}
 for line in f:
     parts = f.readline().split(';')
 
-    sender_domain = parts[1].split('@')[1]
-    recipient_domain = parts[2].split('@')[1]
+    if '<' in parts[1] and '>' in parts[1]:
+        sender = re.search('<(.*)>', parts[1]).group(1).lower()
+    else:
+        sender = parts[1].lower()
+
+    if '<' in parts[2] and '>' in parts[2]:
+        recipient = re.search('<(.*)>', parts[2]).group(1).lower()
+    else:
+        recipient = parts[2].lower()
+
+    sender_domain = sender.split('@')[1]
+    recipient_domain = recipient.split('@')[1]
 
     if sender_domain not in unique_nodes:
         unique_nodes[sender_domain] = len(unique_nodes)
