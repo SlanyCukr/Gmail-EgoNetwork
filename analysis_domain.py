@@ -1,10 +1,10 @@
-lines_to_write = []
-
 f = open("output.csv", "r")
 
+lines_to_write = []
 unique_nodes = {}
 nodes_to_export = []
 
+# read lines from
 for line in f:
     parts = f.readline().split(';')
 
@@ -19,4 +19,10 @@ for line in f:
 
     lines_to_write.append(f"{unique_nodes[sender]}:{unique_nodes[recipient]}")
 
+f.close()
+
+# save lines
+f = open("email_edges.csv", "a")
+for line in lines_to_write:
+    f.write(line + '\n')
 f.close()
