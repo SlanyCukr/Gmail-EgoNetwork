@@ -2,15 +2,13 @@ f = open("output.csv", "r")
 
 lines_to_write = []
 unique_nodes = {}
-nodes_to_export = []
 
-# read lines from
+# read lines from fetched emails
 for line in f:
     parts = f.readline().split(';')
 
     sender = parts[1]
     recipient = parts[2]
-    subject = parts[4]
 
     if sender not in unique_nodes:
         unique_nodes[sender] = len(unique_nodes)
