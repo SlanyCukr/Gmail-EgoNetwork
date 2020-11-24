@@ -24,12 +24,13 @@ for line in f:
     if recipient not in unique_nodes:
         unique_nodes[recipient] = len(unique_nodes)
 
-    lines_to_write.append(f"{unique_nodes[sender]}:{unique_nodes[recipient]}")
+    lines_to_write.append(f"{unique_nodes[sender]};{unique_nodes[recipient]}")
 
 f.close()
 
 # save lines
 f = open("email_edges.csv", "a")
+f.write("Source;Target\n")
 for line in lines_to_write:
     f.write(line + '\n')
 f.close()
