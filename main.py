@@ -26,7 +26,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 EMAIL_MAX_COUNT = 250
 
 def processMessagePayload(payload) -> str:
-    collumnNamesForExport = ["Date","From", "To", "CC"]
+    collumnNamesForExport = ["Date","From", "To", "CC", "Subject"]
     valuesToExport = dict()
     newline = ""
 
