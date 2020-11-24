@@ -23,7 +23,7 @@ from apiclient import errors
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-EMAIL_MAX_COUNT = 250
+EMAIL_MAX_COUNT = 1000
 
 def processMessagePayload(payload) -> str:
     collumnNamesForExport = ["Date","From", "To", "CC", "Subject"]
@@ -46,8 +46,7 @@ def saveToFile(lines):
 
 def listMessagesWithLabels(service, user_id, label_ids=[]):
     try:
-        response = service.users().messages().list(userId=user_id,
-                                                    maxResults=500).execute()
+        response = service.users().messages().list(userId=user_id, maxResults=1000).execute()
         messages = []
         if 'messages' in response:
             messages.extend(response['messages'])
